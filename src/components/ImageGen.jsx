@@ -54,18 +54,19 @@ const ImageGen = () => {
         AI Image <span>Generator</span>
       </div>
       <div className="img-loading">
-        <div className="image">
+        <div className="image-container">
           {/* Display generated image or default image */}
           <img
             src={image_url === "/" ? default_image : image_url}
             alt="Generated AI"
+            className="generated-image"
           />
-          <div className="loading">
-            <div className={loading ? "loading-bar-full" : "loading-bar"}></div>
-            <div className={loading ? "loading-text" : "display-none"}>
-              Loading...
+          {loading && (
+            <div className="loading-overlay">
+              <div className="spinner"></div>
+              <p>Loading...</p>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="search-box">
@@ -73,11 +74,11 @@ const ImageGen = () => {
           type="text"
           ref={inputRef}
           className="search-input"
-          placeholder="Describe What you want to see"
+          placeholder="Describe what you want to see..."
         />
-        <div className="generate-btn" onClick={imageGenerator}>
+        <button className="generate-btn" onClick={imageGenerator}>
           Generate
-        </div>
+        </button>
       </div>
     </div>
   );
